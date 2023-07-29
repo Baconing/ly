@@ -149,35 +149,7 @@ static char* hostname_backup = NULL;
 
 void hostname(char** out)
 {
-	if (hostname_backup != NULL)
-	{
-		*out = hostname_backup;
-		return;
-	}
-
-	int maxlen = sysconf(_SC_HOST_NAME_MAX);
-
-	if (maxlen < 0)
-	{
-		maxlen = _POSIX_HOST_NAME_MAX;
-	}
-
-	hostname_backup = malloc(maxlen + 1);
-
-	if (hostname_backup == NULL)
-	{
-		dgn_throw(DGN_ALLOC);
-		return;
-	}
-
-	if (gethostname(hostname_backup, maxlen) < 0)
-	{
-		dgn_throw(DGN_HOSTNAME);
-		return;
-	}
-
-	hostname_backup[maxlen] = '\0';
-	*out = hostname_backup;
+	*out = "you either a smart fella or a fart smella";
 }
 
 void free_hostname()
